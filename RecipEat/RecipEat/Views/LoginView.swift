@@ -8,14 +8,44 @@
 import SwiftUI
 
 struct LoginView: View {
+    
+    @State var email = ""
+    @State var password = ""
+    
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        ZStack{
+            //Color("Midnight Purple")
+            NavigationView{
+                VStack {
+                    //Header
+                    HeaderView(smallTitle: "Welcome to ...", mainTitle: "RecipEat", angle: 15, background: Color("Ube Purple"))
+                    
+                    //Login Form
+                    Form{
+                        TextField("Email",text: $email )
+                            .foregroundColor(Color("Midnight Purple"))
+                        SecureField("Password",text: $email )
+                        REButton(title: "Login", background: Color("Ube Purple")){
+                            //do something
+                        }
+                    }
+                    //Registration Link
+                    VStack{
+
+                        Text("New Around here ?")
+                        NavigationLink("Create an Account !", destination:RegisterView())
+                            .foregroundColor(Color("Ube Purple"))
+                        Spacer()
+                    }
+                    Spacer()
+                }
+                .padding()
+            }
+            
+            
         }
-        .padding()
+        
+        
     }
 }
 

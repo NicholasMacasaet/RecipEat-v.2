@@ -28,7 +28,7 @@ struct RecipEatApp: App {
         
        
         WindowGroup {
-            LoginView()
+            MainView()
         }
     }
 }

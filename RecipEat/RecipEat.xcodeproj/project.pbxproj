@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		012A00652BF698C30021B9A4 /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00642BF698C30021B9A4 /* MainView.swift */; };
+		012A006A2BF6A3870021B9A4 /* HeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00692BF6A3870021B9A4 /* HeaderView.swift */; };
+		012A006C2BF6B3800021B9A4 /* REButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A006B2BF6B3800021B9A4 /* REButton.swift */; };
 		01D323402BF688E400A48B83 /* RecipEatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3233F2BF688E400A48B83 /* RecipEatApp.swift */; };
 		01D323422BF688E400A48B83 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D323412BF688E400A48B83 /* LoginView.swift */; };
 		01D323442BF688E500A48B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01D323432BF688E500A48B83 /* Assets.xcassets */; };
@@ -36,6 +39,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		012A00642BF698C30021B9A4 /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
+		012A00692BF6A3870021B9A4 /* HeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeaderView.swift; sourceTree = "<group>"; };
+		012A006B2BF6B3800021B9A4 /* REButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = REButton.swift; sourceTree = "<group>"; };
 		01D3233C2BF688E400A48B83 /* RecipEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D3233F2BF688E400A48B83 /* RecipEatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipEatApp.swift; sourceTree = "<group>"; };
 		01D323412BF688E400A48B83 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -76,6 +82,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		012A00682BF69FDB0021B9A4 /* Custom Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Custom Fonts";
+			sourceTree = "<group>";
+		};
 		01D323332BF688E400A48B83 = {
 			isa = PBXGroup;
 			children = (
@@ -95,6 +108,7 @@
 		01D3233E2BF688E400A48B83 /* RecipEat */ = {
 			isa = PBXGroup;
 			children = (
+				012A00682BF69FDB0021B9A4 /* Custom Fonts */,
 				01D323592BF68D2600A48B83 /* Misc */,
 				01D323582BF68D1B00A48B83 /* Models */,
 				01D323572BF68CF500A48B83 /* ViewModels */,
@@ -115,6 +129,8 @@
 		01D323562BF68CEA00A48B83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				012A00692BF6A3870021B9A4 /* HeaderView.swift */,
+				012A00642BF698C30021B9A4 /* MainView.swift */,
 				01D323412BF688E400A48B83 /* LoginView.swift */,
 				01D3235A2BF68EF300A48B83 /* RegisterView.swift */,
 				01D323622BF6927900A48B83 /* SettingsView.swift */,
@@ -123,6 +139,7 @@
 				01D323642BF6929D00A48B83 /* RecipeCreationView.swift */,
 				01D3235E2BF68F8B00A48B83 /* RecipeView.swift */,
 				01D323602BF68FCF00A48B83 /* InstructionView.swift */,
+				012A006B2BF6B3800021B9A4 /* REButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -242,17 +259,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				01D323632BF6927900A48B83 /* SettingsView.swift in Sources */,
+				012A00652BF698C30021B9A4 /* MainView.swift in Sources */,
 				01D3237B2BF695B000A48B83 /* RecipeViewModel.swift in Sources */,
 				01D3235B2BF68EF300A48B83 /* RegisterView.swift in Sources */,
 				01D3237D2BF695C700A48B83 /* InstructionViewModel.swift in Sources */,
 				01D3235D2BF68F7900A48B83 /* RecipeDashboardView.swift in Sources */,
 				01D323652BF6929D00A48B83 /* RecipeCreationView.swift in Sources */,
+				012A006A2BF6A3870021B9A4 /* HeaderView.swift in Sources */,
 				01D323422BF688E400A48B83 /* LoginView.swift in Sources */,
 				01D323792BF6958F00A48B83 /* RecipeCreationViewModel.swift in Sources */,
 				01D323752BF6956B00A48B83 /* RecipeDashboardViewModel.swift in Sources */,
 				01D323732BF6955100A48B83 /* SettingsViewModel.swift in Sources */,
 				01D323402BF688E400A48B83 /* RecipEatApp.swift in Sources */,
 				01D323672BF6940300A48B83 /* RecipeDashboardItemView.swift in Sources */,
+				012A006C2BF6B3800021B9A4 /* REButton.swift in Sources */,
 				01D323772BF6957700A48B83 /* RecipeDashboardItemViewModel.swift in Sources */,
 				01D3235F2BF68F8B00A48B83 /* RecipeView.swift in Sources */,
 				01D3236F2BF6953C00A48B83 /* LoginViewModel.swift in Sources */,
