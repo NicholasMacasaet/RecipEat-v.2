@@ -9,9 +9,11 @@ import SwiftUI
 
 struct RegisterView: View {
     
-    @State var name = ""
-    @State var password = ""
-    @State var email = ""
+//    @State var name = ""
+//    @State var password = ""
+//    @State var email = ""
+    
+    @StateObject var viewModel = RegisterViewModel()
 
     
     
@@ -21,15 +23,22 @@ struct RegisterView: View {
             
             
             Form{
-                TextField("Name",text: $name )
+                TextField("Name",text: $viewModel.name )
                     .foregroundColor(Color("Midnight Purple"))
-                TextField("Email",text: $email )
-                SecureField("Password",text: $password )
+                    .autocorrectionDisabled()
+
+                TextField("Email",text: $viewModel.email )
+                    .autocapitalization(.none)
+                    .autocorrectionDisabled()
+                
+                SecureField("Password",text: $viewModel.password )
                 REButton(title: "Register", background: Color("Royal Blue")){
-                    
+                    //attempt registration
+                    viewModel.register()
                 }
+                .padding()
             }
-            
+            .offset(y:-50)
             
         
             Spacer()

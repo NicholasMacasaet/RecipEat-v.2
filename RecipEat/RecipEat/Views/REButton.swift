@@ -14,6 +14,7 @@ struct REButton: View {
     let title:String
     let background: Color
     let doAThingamaBob: () -> Void
+    //teporary closure until we add functionality 
     
     var body: some View {
         Button{

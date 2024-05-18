@@ -9,8 +9,10 @@ import SwiftUI
 
 struct LoginView: View {
     
-    @State var email = ""
-    @State var password = ""
+//    @State var email = ""
+//    @State var password = ""
+    
+    @StateObject var viewModel = LoginViewModel()
     
     var body: some View {
         ZStack{
@@ -20,22 +22,45 @@ struct LoginView: View {
                     //Header
                     HeaderView(smallTitle: "Welcome to ...", mainTitle: "RecipEat", angle: 15, background: Color("Ube Purple"))
                     
+                    
+                    
+                   
+                    
                     //Login Form
                     Form{
-                        TextField("Email",text: $email )
-                            .foregroundColor(Color("Midnight Purple"))
-                        SecureField("Password",text: $email )
-                        REButton(title: "Login", background: Color("Ube Purple")){
-                            //do something
+                        
+                        
+                        if !viewModel.errorMessage.isEmpty{
+                            Text(viewModel.errorMessage)
+                                .foregroundColor(Color("Ube Purple"))
                         }
+                        
+                        
+                        TextField("Email",text: $viewModel.email )
+                            .foregroundColor(Color("Midnight Purple"))
+                            .autocapitalization(.none)
+                        
+                        
+                        SecureField("Password",text: $viewModel.password )
+
+                        
+                        REButton(title: "Login", background: Color("Ube Purple")){
+                            //attempt login
+                            viewModel.login()
+                        }
+                        .padding()
+                        
+                        
+                        
                     }
+                    .offset(y:-50)
                     //Registration Link
                     VStack{
 
                         Text("New Around here ?")
                         NavigationLink("Create an Account !", destination:RegisterView())
                             .foregroundColor(Color("Ube Purple"))
-                        Spacer()
+                    
                     }
                     Spacer()
                 }
