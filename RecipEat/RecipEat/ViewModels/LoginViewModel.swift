@@ -16,8 +16,6 @@ class LoginViewModel: ObservableObject{
     
     
     init(){
-    
-        
     }
     
     
@@ -28,6 +26,7 @@ class LoginViewModel: ObservableObject{
         
         Auth.auth().signIn(withEmail: email, password: password)
         
+        print("Login Successful")
     
     }
     
@@ -41,7 +40,7 @@ class LoginViewModel: ObservableObject{
         }
         
         
-        guard !email.contains("@"), !email.contains(".")
+        guard email.contains("@") && email.contains(".")
         else{
             errorMessage = "Email is not valid"
             return false

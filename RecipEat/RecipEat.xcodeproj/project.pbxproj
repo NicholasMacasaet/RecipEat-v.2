@@ -151,6 +151,7 @@
 		01D323572BF68CF500A48B83 /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				012A006F2BF91D440021B9A4 /* MainViewViewModel.swift */,
 				01D3236E2BF6953C00A48B83 /* LoginViewModel.swift */,
 				01D323702BF6954600A48B83 /* RegisterViewModel.swift */,
 				01D323722BF6955100A48B83 /* SettingsViewModel.swift */,
@@ -159,7 +160,6 @@
 				01D323782BF6958F00A48B83 /* RecipeCreationViewModel.swift */,
 				01D3237A2BF695B000A48B83 /* RecipeViewModel.swift */,
 				01D3237C2BF695C700A48B83 /* InstructionViewModel.swift */,
-				012A006F2BF91D440021B9A4 /* MainViewViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";

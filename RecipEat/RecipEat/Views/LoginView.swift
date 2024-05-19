@@ -24,8 +24,7 @@ struct LoginView: View {
                     
                     
                     
-                   
-                    
+                
                     //Login Form
                     Form{
                         

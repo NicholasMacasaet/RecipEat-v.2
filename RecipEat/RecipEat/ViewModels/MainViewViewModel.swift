@@ -16,14 +16,17 @@ class MainViewViewModel: ObservableObject{
     
     init(){
         
-        self.handler = Auth.auth().addStateDidChangeListener{ [weak self]_, user in
+        self.handler = Auth.auth().addStateDidChangeListener{ [weak self] _, user in
             DispatchQueue.main.async{
                 self?.currentUserId = user?.uid ?? ""
             }
         }
+        
+        
     }
     
     public var isSignedIn: Bool{
+        print("Current user: \(currentUserId)")
         return Auth.auth().currentUser != nil
     }
 }

@@ -66,7 +66,7 @@ class RegisterViewModel: ObservableObject{
         }
         
         
-        guard email.contains("@") && email.contains(".")else{
+        guard email.contains("@") && email.contains(".") else{
             return false
         }
         
