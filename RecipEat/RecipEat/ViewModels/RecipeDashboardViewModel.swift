@@ -6,3 +6,14 @@
 //
 
 import Foundation
+
+
+//view model for list of recipes 
+class RecipeDashboardViewModel: ObservableObject{
+    
+    init(){
+    }
+    
+    
+    
+}

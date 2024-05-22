@@ -8,11 +8,41 @@
 import SwiftUI
 
 struct RecipeDashboardView: View {
+    
+    
+    @StateObject var viewModel = RecipeDashboardViewModel()
+    
+    
+    private let userId: String
+    
+    init(userId: String){
+        self.userId = userId
+    }
+    
     var body: some View {
-        Text("I'm logged in !")
+        
+        SearchBar()
+        
+        NavigationView{
+            VStack{
+                
+                
+            }
+            .navigationTitle("My Recipes")
+            .toolbar{
+                //action
+                
+                Button{
+                    //action
+                } label: {
+                    Image(systemName:"plus")
+                }.foregroundColor(Color("Ube Purple"))
+            }
+            
+        }
     }
 }
 
 #Preview {
-    RecipeDashboardView()
+    RecipeDashboardView(userId: "")
 }

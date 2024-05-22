@@ -13,11 +13,23 @@ struct MainView: View {
     
     var body: some View {
         //LoginView()
-    
-
         if viewModel.isSignedIn,
             !viewModel.currentUserId.isEmpty{
-            RecipeDashboardView()
+            
+            TabView{
+                RecipeDashboardView(userId: viewModel.currentUserId )
+                    .tabItem{
+                        Label("Home", systemImage: "house")
+                    }
+                
+                ProfileView()
+                    .tabItem{
+                        Label("Profile", systemImage: "person.circle")
+                    }
+            }
+            
+           
+            
         }else{
             LoginView()
         }

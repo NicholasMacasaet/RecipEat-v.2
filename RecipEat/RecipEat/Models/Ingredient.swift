@@ -6,3 +6,15 @@
 //
 
 import Foundation
+
+struct Ingredient:Identifiable{
+    var id: String
+    
+    
+    
+    let name:String
+    let fats:Double
+    let carbs:Double
+    let protein:Double 
+    let kcal:Int
+}

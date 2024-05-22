@@ -12,6 +12,10 @@
 		012A006C2BF6B3800021B9A4 /* REButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A006B2BF6B3800021B9A4 /* REButton.swift */; };
 		012A006E2BF91AAC0021B9A4 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A006D2BF91AAC0021B9A4 /* Extensions.swift */; };
 		012A00702BF91D440021B9A4 /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A006F2BF91D440021B9A4 /* MainViewViewModel.swift */; };
+		012A00722BFE60D40021B9A4 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00712BFE60D40021B9A4 /* ProfileView.swift */; };
+		012A00742BFE61080021B9A4 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00732BFE61080021B9A4 /* ProfileViewModel.swift */; };
+		012A00762BFE6D320021B9A4 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00752BFE6D320021B9A4 /* SearchBar.swift */; };
+		012A00782BFE6D400021B9A4 /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00772BFE6D400021B9A4 /* SearchBarViewModel.swift */; };
 		01D323402BF688E400A48B83 /* RecipEatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3233F2BF688E400A48B83 /* RecipEatApp.swift */; };
 		01D323422BF688E400A48B83 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D323412BF688E400A48B83 /* LoginView.swift */; };
 		01D323442BF688E500A48B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01D323432BF688E500A48B83 /* Assets.xcassets */; };
@@ -46,6 +50,10 @@
 		012A006B2BF6B3800021B9A4 /* REButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = REButton.swift; sourceTree = "<group>"; };
 		012A006D2BF91AAC0021B9A4 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		012A006F2BF91D440021B9A4 /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
+		012A00712BFE60D40021B9A4 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		012A00732BFE61080021B9A4 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
+		012A00752BFE6D320021B9A4 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
+		012A00772BFE6D400021B9A4 /* SearchBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewModel.swift; sourceTree = "<group>"; };
 		01D3233C2BF688E400A48B83 /* RecipEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D3233F2BF688E400A48B83 /* RecipEatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipEatApp.swift; sourceTree = "<group>"; };
 		01D323412BF688E400A48B83 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -137,6 +145,7 @@
 				012A00642BF698C30021B9A4 /* MainView.swift */,
 				01D323412BF688E400A48B83 /* LoginView.swift */,
 				01D3235A2BF68EF300A48B83 /* RegisterView.swift */,
+				012A00712BFE60D40021B9A4 /* ProfileView.swift */,
 				01D323622BF6927900A48B83 /* SettingsView.swift */,
 				01D3235C2BF68F7900A48B83 /* RecipeDashboardView.swift */,
 				01D323662BF6940300A48B83 /* RecipeDashboardItemView.swift */,
@@ -144,6 +153,7 @@
 				01D3235E2BF68F8B00A48B83 /* RecipeView.swift */,
 				01D323602BF68FCF00A48B83 /* InstructionView.swift */,
 				012A006B2BF6B3800021B9A4 /* REButton.swift */,
+				012A00752BFE6D320021B9A4 /* SearchBar.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -155,11 +165,13 @@
 				01D3236E2BF6953C00A48B83 /* LoginViewModel.swift */,
 				01D323702BF6954600A48B83 /* RegisterViewModel.swift */,
 				01D323722BF6955100A48B83 /* SettingsViewModel.swift */,
+				012A00732BFE61080021B9A4 /* ProfileViewModel.swift */,
 				01D323742BF6956B00A48B83 /* RecipeDashboardViewModel.swift */,
 				01D323762BF6957700A48B83 /* RecipeDashboardItemViewModel.swift */,
 				01D323782BF6958F00A48B83 /* RecipeCreationViewModel.swift */,
 				01D3237A2BF695B000A48B83 /* RecipeViewModel.swift */,
 				01D3237C2BF695C700A48B83 /* InstructionViewModel.swift */,
+				012A00772BFE6D400021B9A4 /* SearchBarViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -265,8 +277,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				01D323632BF6927900A48B83 /* SettingsView.swift in Sources */,
+				012A00782BFE6D400021B9A4 /* SearchBarViewModel.swift in Sources */,
 				012A00652BF698C30021B9A4 /* MainView.swift in Sources */,
 				01D3237B2BF695B000A48B83 /* RecipeViewModel.swift in Sources */,
+				012A00742BFE61080021B9A4 /* ProfileViewModel.swift in Sources */,
 				01D3235B2BF68EF300A48B83 /* RegisterView.swift in Sources */,
 				01D3237D2BF695C700A48B83 /* InstructionViewModel.swift in Sources */,
 				01D3235D2BF68F7900A48B83 /* RecipeDashboardView.swift in Sources */,
@@ -278,11 +292,13 @@
 				01D323752BF6956B00A48B83 /* RecipeDashboardViewModel.swift in Sources */,
 				01D323732BF6955100A48B83 /* SettingsViewModel.swift in Sources */,
 				01D323402BF688E400A48B83 /* RecipEatApp.swift in Sources */,
+				012A00722BFE60D40021B9A4 /* ProfileView.swift in Sources */,
 				01D323672BF6940300A48B83 /* RecipeDashboardItemView.swift in Sources */,
 				012A006C2BF6B3800021B9A4 /* REButton.swift in Sources */,
 				01D323772BF6957700A48B83 /* RecipeDashboardItemViewModel.swift in Sources */,
 				01D3235F2BF68F8B00A48B83 /* RecipeView.swift in Sources */,
 				01D3236F2BF6953C00A48B83 /* LoginViewModel.swift in Sources */,
+				012A00762BFE6D320021B9A4 /* SearchBar.swift in Sources */,
 				01D323712BF6954600A48B83 /* RegisterViewModel.swift in Sources */,
 				012A006E2BF91AAC0021B9A4 /* Extensions.swift in Sources */,
 				01D3236D2BF6943A00A48B83 /* Ingredient.swift in Sources */,
