@@ -8,8 +8,31 @@
 import SwiftUI
 
 struct RecipeCreationView: View {
+    
+    //let test = ""
+    
+    
+    
+    
+    @State var ingredientName = ""
+    @State var ingredientProtein = 0.0
+    @State var ingredientFats = 0.0
+    @State var ingredientCarbs = 0.0
+    @State var kcal = 0
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        
+        
+        
+        SearchBar(ingredientName: self.$ingredientName, ingredientProtein:self.$ingredientProtein, ingredientFats: self.$ingredientFats, ingredientCarbs: self.$ingredientCarbs, kcal: self.$kcal)
+        
+        
+        
+//        Text(ingredientName)
+//        Text("\(ingredientProtein)")
+//        Text("\(ingredientFats)")
+//        Text("\(ingredientCarbs)")
+//        Text("\(kcal)")
     }
 }
 

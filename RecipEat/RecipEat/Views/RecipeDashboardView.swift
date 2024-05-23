@@ -21,8 +21,8 @@ struct RecipeDashboardView: View {
     
     var body: some View {
         
-        SearchBar()
-        
+//        SearchBar()
+//        
         NavigationView{
             VStack{
                 
@@ -31,12 +31,17 @@ struct RecipeDashboardView: View {
             .navigationTitle("My Recipes")
             .toolbar{
                 //action
+               
+                    NavigationLink{
+                        
+                        RecipeCreationView()
+                        //print("going to recipe creation view")
+                        
+                    } label: {
+                        Image(systemName:"plus")
+                    }.foregroundColor(Color("Ube Purple"))
                 
-                Button{
-                    //action
-                } label: {
-                    Image(systemName:"plus")
-                }.foregroundColor(Color("Ube Purple"))
+                
             }
             
         }

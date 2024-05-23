@@ -12,6 +12,7 @@ class SearchBarViewModel: ObservableObject{
     
     
     @Published var ingredients = [Ingredient]()
+
     
     init(){
         let db = Firestore.firestore()
@@ -22,7 +23,6 @@ class SearchBarViewModel: ObservableObject{
                 print((err?.localizedDescription)!)
                 return
             }
-            
             
             for i in snap!.documents{
                 let id = i.documentID
@@ -37,5 +37,6 @@ class SearchBarViewModel: ObservableObject{
         }
         
     }
+    
     
 }
