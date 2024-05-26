@@ -8,17 +8,20 @@
 import Foundation
 
 
-struct Recipe:Codable{
+struct Recipe: Codable{
     
  
-    let name: String
-    let protein: Double
-    let fats: Double
-    let carbs: Double
+    var name: String
     
-    let directions: String
+    var protein: Double
+    var fats: Double
+    var carbs: Double
     
-    let ingredients: [String: Int]
+    var kcal: Int
+    
+    var directions: String
+    
+    var ingredients: [String: Int]
     /*denotes specific Recipe name and quantity of the ingredients,
     adds this to a Recipe if it doesnt exist , or increment the
     count if it is */
