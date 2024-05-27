@@ -14,12 +14,27 @@ class RecipeCreationViewModel: ObservableObject{
     /*
      Primitives for the ingredients
      */
-    @Published var ingredientName = ""
-    @Published var ingredientProtein = 0.0
-    @Published var ingredientFats = 0.0
-    @Published var ingredientCarbs = 0.0
-    @Published var ingredientkcal = 0
+//    @Published var ingredientName = ""
+//    @Published var ingredientProtein = 0.0
+//    @Published var ingredientFats = 0.0
+//    @Published var ingredientCarbs = 0.0
+//    @Published var ingredientkcal = 0
     
+    @Published var ingredientName: String
+    @Published var ingredientProtein: Double
+    @Published var ingredientFats: Double
+    @Published var ingredientCarbs: Double
+    @Published var kcal: Int
+    
+    
+    @Published var quantity = 1
+    
+//    @State var ingredientName = ""
+//    @State var ingredientProtein = 0.0
+//    @State var ingredientFats = 0.0
+//    @State var ingredientCarbs = 0.0
+//    @State var ingredientkcal = 0
+//
     
     @Published var recipeName = ""
     
@@ -31,10 +46,14 @@ class RecipeCreationViewModel: ObservableObject{
     
     let db = Firestore.firestore()
     
-    init(){
+    init(ingredientName: String,ingredientProtein: Double, ingredientFats: Double, ingredientCarbs: Double, kcal: Int ){
         self.newRecipe = Recipe(name: "", protein: 0.0 , fats: 0.0 , carbs: 0.0 , kcal: 0, directions: "", ingredients: [:])
         
-        
+        self.ingredientName = ingredientName
+        self.ingredientProtein = ingredientProtein
+        self.ingredientFats = ingredientFats
+        self.ingredientCarbs = ingredientCarbs
+        self.kcal = kcal
         
     }
     
@@ -57,6 +76,13 @@ class RecipeCreationViewModel: ObservableObject{
         
     }
     
+    func clearPrimitives() -> Void {
+        ingredientName = ""
+        ingredientProtein = 0.0
+        ingredientFats = 0.0
+        ingredientCarbs = 0.0
+        kcal = 0
+    }
     
     
     /*
@@ -68,15 +94,15 @@ class RecipeCreationViewModel: ObservableObject{
          make sure that the fields we're looking at aren't empty
          */
         guard !ingredientName.isEmpty && ingredientProtein != 0 && ingredientFats != 0
-        && ingredientCarbs != 0 && ingredientkcal != 0 else{
+        && ingredientCarbs != 0 && kcal != 0 else{
             return false
         }
         
-        if let currentIngredient = newRecipe.ingredients[ingredientName] {
+        if let currentIngredientCount = newRecipe.ingredients[ingredientName] {
             /*
              if the ingredient already exists within the new Recipe
              */
-            newRecipe.ingredients[ingredientName] = currentIngredient + 1
+            newRecipe.ingredients[ingredientName] = currentIngredientCount + self.quantity
         }
         else{
             /*
@@ -88,11 +114,11 @@ class RecipeCreationViewModel: ObservableObject{
         /*
          in either case, update the new Recipe's macros accordingly
          */
-        newRecipe.carbs += ingredientCarbs
-        newRecipe.protein += ingredientProtein
-        newRecipe.fats += ingredientFats
-        newRecipe.kcal += ingredientkcal
-        
+        newRecipe.carbs += ingredientCarbs * Double(self.quantity)
+        newRecipe.protein += ingredientProtein * Double(self.quantity)
+        newRecipe.fats += ingredientFats * Double(self.quantity)
+        /*casting because swift is pissy about it*/
+        newRecipe.kcal += kcal * self.quantity
         
         /*
          now we clear the corresponding primitives
@@ -100,8 +126,7 @@ class RecipeCreationViewModel: ObservableObject{
         ingredientCarbs = 0.0
         ingredientProtein = 0.0
         ingredientFats = 0.0
-        ingredientkcal = 0
-        
+        kcal = 0
         
         
         return true 
