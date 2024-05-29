@@ -32,6 +32,8 @@ struct RecipeCreationView: View {
     
 //    viewModel.$ingredientName
     
+    
+    //var result: Bool
     init(){
         
         
@@ -42,47 +44,121 @@ struct RecipeCreationView: View {
     
     var body: some View {
         
-        /*
-         this component, when clicked, automatically adds the information of the selected ingredient to the state variables above
-         
-         TODO: when the state variables change, we update the information in the view model as needed
-         */
-        SearchBar(ingredientName: self.$ingredientName, ingredientProtein:self.$ingredientProtein, ingredientFats: self.$ingredientFats, ingredientCarbs: self.$ingredientCarbs, kcal: self.$kcal)
         
-
-        
-        
-        /*
-         TODO: (2)
-         here we'll put a small text box displaying the name of the selected ingredient and we can add three buttons, two to increase or decrease the quantity of ingredients to add and a third to add it to the recipe via calling the addIngredients() function, this function initially adds the ingredient for selection
-         
-         
-         TODO: (3)
-         for the decrease button, if we reach zero then we clear the selected ingredient from the text box selection and from the state variables, call the clearPrimitives() method here
+        VStack{
+    
+            /*
+             this component, when clicked, automatically adds the information of the selected ingredient to the state variables above
+             
+             TODO: when the state variables change, we update the information in the view model as needed
+             */
+            
+            
+            ScrollView{
+                SearchBar(ingredientName: self.$ingredientName, ingredientProtein:self.$ingredientProtein, ingredientFats: self.$ingredientFats, ingredientCarbs: self.$ingredientCarbs, kcal: self.$kcal)
+            }.border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
+                .frame(height: UIScreen.main.bounds.height / 3)
+            
+            
+            /*
+             TODO: (2)
+             here we'll put a small text box displaying the name of the selected ingredient and we can add three buttons, two to increase or decrease the quantity of ingredients to add and a third to add it to the recipe via calling the addIngredients() function, this function initially adds the ingredient for selection
+             
+             
+             TODO: (3)
+             for the decrease button, if we reach zero then we clear the selected ingredient from the text box selection and from the state variables, call the clearPrimitives() method here
              I'm thinking it would be [inc button]  [dec button] [add to recipe]
-         */
+             */
+      
+            if(!ingredientName.isEmpty){
+                HStack{
+                    Text("Selected Ingredient: \(viewModel.ingredientName) (\(viewModel.quantity))")
+                    
+                    REButton(title: "-", background: Color("Ube Purple")){
+                        viewModel.quantity = viewModel.quantity - 1
+                    }.frame(width: 75 ,height: 75)
+                    
+                
+                    
+                    REButton(title: "+", background: Color("Ube Purple")){
+                        viewModel.quantity = viewModel.quantity + 1
+                    }.frame(width: 75 ,height: 75)
+                    
+                    
+                    REButton(title: "Add to recipe", background: Color("Ube Purple")){
+                        viewModel.addIngredients()
+                        
+                        viewModel.clearPrimitives()
+                        
+                        ingredientName = ""
+                        ingredientProtein = 0.0
+                        ingredientFats = 0.0
+                        ingredientCarbs = 0.0
+                        kcal = 0
+                    }.frame(width: 100 ,height: 75)
+                                        
+    
+                }.padding()
+            }
+            
+            
+            
+            /*
+             TODO: (4)
+             Here we would render all the ingredients that are in the recipe via iterating over the internal dictionary. Since the key of the dict is the name of the ingredient and the value is the quantity it should be simple enough
+             */
+            
+            
+    
+            
+            
+            /*
+             TODO: (5)
+             Here we'll put two text fields, one for the name and one for the description so the user can add the instructions for the recipe and the name
+             
+             */
+            TextField("Input recipe name", text: $viewModel.recipeName).bold()
+            
+            TextField("How do you make your recipe ?", text:$viewModel.recipeDirections).bold()
+                
+           
+            List(viewModel.newRecipe.ingredients.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
+                       HStack {
+                           Text("Ingredient: \(key)")
+                           Spacer()
+                           Text("Quantity: \(value)")
+                       }
+                   }
+            
+            
+            
+            REButton(title:"Add Recipe", background: Color("Ube Purple")){
+                
+                viewModel.registerRecipe()
+            }
+            Spacer()
         
+//            Text(viewModel.ingredientName)
+//            Text("\(viewModel.ingredientProtein)")
+//            Text("\(viewModel.ingredientFats)")
+//            Text("\(viewModel.ingredientCarbs)")
+//            Text("\(viewModel.kcal)")
+                
+            
+        }.onChange(of: ingredientName) { 
+            viewModel.ingredientName = ingredientName}
         
-        /*
-         TODO: (4)
-         Here we would render all the ingredients that are in the recipe via iterating over the internal dictionary. Since the key of the dict is the name of the ingredient and the value is the quantity it should be simple enough
-         */
+        .onChange(of: ingredientProtein) {
+            viewModel.ingredientProtein = ingredientProtein}
         
+        .onChange(of: ingredientFats) {
+            viewModel.ingredientFats = ingredientFats}
         
+        .onChange(of: ingredientCarbs) {
+            viewModel.ingredientCarbs = ingredientCarbs}
+        .onChange(of: kcal) {
+            viewModel.kcal = kcal}
         
-        /*
-         TODO: (5)
-         Here we'll put two text fields, one for the name and one for the description so the user can add the instructions for the recipe and the name
-         
-         */
-        
-        
-        
-//        Text(ingredientName)
-//        Text("\(ingredientProtein)")
-//        Text("\(ingredientFats)")
-//        Text("\(ingredientCarbs)")
-//        Text("\(kcal)")
     }
 }
 

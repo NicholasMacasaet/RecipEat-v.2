@@ -46,10 +46,10 @@ struct SearchBar: View {
                         self.ingredientCarbs = i.carbs
                         self.kcal = i.kcal
                         
-                        print("Saved ingredient Name: \(ingredientName)")
-                        print("Saved ingredient Protein: \(ingredientProtein)")
-                        print("Saved ingredient Fats: \(ingredientFats)")
-                        print("Saved ingredient Carbs: \(ingredientCarbs)")
+//                        print("Saved ingredient Name: \(ingredientName)")
+//                        print("Saved ingredient Protein: \(ingredientProtein)")
+//                        print("Saved ingredient Fats: \(ingredientFats)")
+//                        print("Saved ingredient Carbs: \(ingredientCarbs)")
                         
                         //self.test = i.name
                     } label: {

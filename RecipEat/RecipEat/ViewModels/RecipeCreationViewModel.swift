@@ -36,6 +36,11 @@ class RecipeCreationViewModel: ObservableObject{
 //    @State var ingredientkcal = 0
 //
     
+//    print("Saved ingredient Name: \(ingredientName)")
+//    print("Saved ingredient Protein: \(ingredientProtein)")
+//    print("Saved ingredient Fats: \(ingredientFats)")
+//    print("Saved ingredient Carbs: \(ingredientCarbs)")
+    
     @Published var recipeName = ""
     
     @Published var recipeDirections = ""
@@ -93,11 +98,21 @@ class RecipeCreationViewModel: ObservableObject{
         /*
          make sure that the fields we're looking at aren't empty
          */
-        guard !ingredientName.isEmpty && ingredientProtein != 0 && ingredientFats != 0
-        && ingredientCarbs != 0 && kcal != 0 else{
+        
+        print("test")
+        
+        
+                print("Saved ingredient Name: \(ingredientName)")
+                print("Saved ingredient Protein: \(ingredientProtein)")
+                print("Saved ingredient Fats: \(ingredientFats)")
+                print("Saved ingredient Carbs: \(ingredientCarbs)")
+        
+    
+        guard !ingredientName.isEmpty else{
             return false
         }
         
+        print("test 2")
         if let currentIngredientCount = newRecipe.ingredients[ingredientName] {
             /*
              if the ingredient already exists within the new Recipe
@@ -119,6 +134,9 @@ class RecipeCreationViewModel: ObservableObject{
         newRecipe.fats += ingredientFats * Double(self.quantity)
         /*casting because swift is pissy about it*/
         newRecipe.kcal += kcal * self.quantity
+        
+        
+        print("Added Ingredient: \(ingredientName)")
         
         /*
          now we clear the corresponding primitives
