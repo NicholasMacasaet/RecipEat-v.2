@@ -46,18 +46,20 @@ struct RecipeCreationView: View {
         
         
         VStack{
-    
+            
+         
             /*
              this component, when clicked, automatically adds the information of the selected ingredient to the state variables above
              
              TODO: when the state variables change, we update the information in the view model as needed
              */
-            
+           
             
             ScrollView{
                 SearchBar(ingredientName: self.$ingredientName, ingredientProtein:self.$ingredientProtein, ingredientFats: self.$ingredientFats, ingredientCarbs: self.$ingredientCarbs, kcal: self.$kcal)
             }.border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
                 .frame(height: UIScreen.main.bounds.height / 3)
+                
             
             
             /*
@@ -73,16 +75,18 @@ struct RecipeCreationView: View {
             if(!ingredientName.isEmpty){
                 HStack{
                     Text("Selected Ingredient: \(viewModel.ingredientName) (\(viewModel.quantity))")
+                        .font(.system(size: 12))
+                        .border(Color.blue)
                     
                     REButton(title: "-", background: Color("Ube Purple")){
                         viewModel.quantity = viewModel.quantity - 1
-                    }.frame(width: 75 ,height: 75)
+                    }.frame(width: 80 ,height: 90)
                     
                 
                     
                     REButton(title: "+", background: Color("Ube Purple")){
                         viewModel.quantity = viewModel.quantity + 1
-                    }.frame(width: 75 ,height: 75)
+                    }.frame(width: 80 ,height: 90)
                     
                     
                     REButton(title: "Add to recipe", background: Color("Ube Purple")){
@@ -95,10 +99,11 @@ struct RecipeCreationView: View {
                         ingredientFats = 0.0
                         ingredientCarbs = 0.0
                         kcal = 0
-                    }.frame(width: 100 ,height: 75)
+                    }.frame(width: 100 ,height: 100)
                                         
     
-                }.padding()
+                }
+                    .frame(height: 75)
             }
             
             
@@ -117,9 +122,15 @@ struct RecipeCreationView: View {
              Here we'll put two text fields, one for the name and one for the description so the user can add the instructions for the recipe and the name
              
              */
-            TextField("Input recipe name", text: $viewModel.recipeName).bold()
+            TextField("Input recipe name", text: $viewModel.recipeName).bold().border(Color("Ube Purple"))
+                .font(.system(size:25))
+                .foregroundColor(Color("Ube Purple"))
+                .padding(.top,10)
+                .padding(.bottom,10)
             
-            TextField("How do you make your recipe ?", text:$viewModel.recipeDirections).bold()
+            
+            TextField("How do you make your recipe ?", text:$viewModel.recipeDirections).bold().border(Color("Ube Purple"))
+                .font(.system(size:20))
                 
            
             List(viewModel.newRecipe.ingredients.sorted(by: { $0.key < $1.key }), id: \.key) { key, value in
@@ -136,6 +147,10 @@ struct RecipeCreationView: View {
                 
                 viewModel.registerRecipe()
             }
+            .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/4)
+            
+            
+            
             Spacer()
         
 //            Text(viewModel.ingredientName)
