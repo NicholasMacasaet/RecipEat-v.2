@@ -57,8 +57,7 @@ struct RecipeCreationView: View {
             
             ScrollView{
                 SearchBar(ingredientName: self.$ingredientName, ingredientProtein:self.$ingredientProtein, ingredientFats: self.$ingredientFats, ingredientCarbs: self.$ingredientCarbs, kcal: self.$kcal)
-            }.border(/*@START_MENU_TOKEN@*/Color.black/*@END_MENU_TOKEN@*/)
-                .frame(height: UIScreen.main.bounds.height / 3)
+            }.frame(height: UIScreen.main.bounds.height / 3)
                 
             
             
@@ -76,7 +75,7 @@ struct RecipeCreationView: View {
                 HStack{
                     Text("Selected Ingredient: \(viewModel.ingredientName) (\(viewModel.quantity))")
                         .font(.system(size: 12))
-                        .border(Color.blue)
+                        
                     
                     REButton(title: "-", background: Color("Ube Purple")){
                         viewModel.quantity = viewModel.quantity - 1
@@ -122,14 +121,14 @@ struct RecipeCreationView: View {
              Here we'll put two text fields, one for the name and one for the description so the user can add the instructions for the recipe and the name
              
              */
-            TextField("Input recipe name", text: $viewModel.recipeName).bold().border(Color("Ube Purple"))
+            TextField("Input recipe name", text: $viewModel.recipeName).bold()
                 .font(.system(size:25))
                 .foregroundColor(Color("Ube Purple"))
                 .padding(.top,10)
                 .padding(.bottom,10)
             
             
-            TextField("How do you make your recipe ?", text:$viewModel.recipeDirections).bold().border(Color("Ube Purple"))
+            TextField("How do you make your recipe ?", text:$viewModel.recipeDirections).bold()
                 .font(.system(size:20))
                 
            

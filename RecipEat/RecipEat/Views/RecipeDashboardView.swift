@@ -25,6 +25,12 @@ struct RecipeDashboardView: View {
 //        
         NavigationView{
             VStack{
+                ForEach(self.viewModel.recipes, id: \.self){
+                    i in Button {
+                    } label: {
+                        Text(i)
+                    }
+                }
                 
                 
             }
@@ -33,7 +39,6 @@ struct RecipeDashboardView: View {
                 //action
                
                     NavigationLink{
-                        
                         RecipeCreationView()
                         //print("going to recipe creation view")
                         

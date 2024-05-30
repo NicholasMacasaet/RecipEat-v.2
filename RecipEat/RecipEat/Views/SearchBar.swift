@@ -68,6 +68,7 @@ struct SearchBar: View {
             }.navigationTitle("Find Ingredients")
         }.searchable(text: $search)
         
+        
     }
     
 }
