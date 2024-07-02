@@ -6,7 +6,7 @@
 //
 
 import Foundation
-
+import FirebaseAuth
 import Firebase
 
 class RecipeCreationViewModel: ObservableObject{
@@ -49,10 +49,15 @@ class RecipeCreationViewModel: ObservableObject{
     @Published var newRecipe: Recipe
     
     
+    @Published private var curr_user: String
+    
+    
+    
+    
     let db = Firestore.firestore()
     
     init(ingredientName: String,ingredientProtein: Double, ingredientFats: Double, ingredientCarbs: Double, kcal: Int ){
-        self.newRecipe = Recipe(name: "", protein: 0.0 , fats: 0.0 , carbs: 0.0 , kcal: 0, directions: "", ingredients: [:])
+        self.newRecipe = Recipe(name: "", protein: 0.0 , fats: 0.0 , carbs: 0.0 , kcal: 0, directions: "", ingredients: [:], owner:"")
         
         self.ingredientName = ingredientName
         self.ingredientProtein = ingredientProtein
@@ -60,6 +65,14 @@ class RecipeCreationViewModel: ObservableObject{
         self.ingredientCarbs = ingredientCarbs
         self.kcal = kcal
         
+        
+        
+        if let user = Auth.auth().currentUser{
+            self.curr_user = user.uid
+        }
+        else{
+            self.curr_user = ""
+        }
     }
     
     
@@ -67,6 +80,8 @@ class RecipeCreationViewModel: ObservableObject{
         guard addRecipeName() && addRecipeDirections() else{
             return
         }
+        
+        newRecipe.owner = self.curr_user
         
         
         let recipeCollection = db.collection("recipes")

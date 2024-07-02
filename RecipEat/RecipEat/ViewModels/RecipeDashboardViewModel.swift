@@ -7,13 +7,20 @@
 
 import Foundation
 import Firebase
-
+import FirebaseAuth
 
 //view model for list of recipes 
 class RecipeDashboardViewModel: ObservableObject{
     
     
     @Published var recipes = [String]()
+    
+    
+    typealias NutritionInfo = (name: String, protein: Double, carbs: Double, fats: Double, kcal: Int)
+    
+    @Published var recipesUwU: [NutritionInfo] = []
+    
+    let currUser = Auth.auth().currentUser?.uid
     
     init(){
         
@@ -29,9 +36,34 @@ class RecipeDashboardViewModel: ObservableObject{
             
             for i in snap!.documents{
                 
-                let name = i.get("name") as! String
+                /*
+                 code that will validate whether or not this user owns this recipe
+                 */
                 
-                self.recipes.append(name)
+                let recipeOwner = i.get("owner") as! String
+                
+                if recipeOwner == self.currUser{
+                    let name = i.get("name") as! String
+                    
+                    let protein = i.get("protein") as! Double
+                    let fats = i.get("fats") as! Double
+                    let carbs = i.get("carbs") as! Double
+                    let kcal = i.get("kcal") as! Int
+             
+        
+                    
+    
+                    self.recipes.append(name)
+                    
+                    
+                    self.recipesUwU.append((name, protein, fats, carbs, kcal))
+                    /*
+                     TODO: Unpack the info for the other fields in here as well
+                     */
+                    
+                    
+                }
+            
             }
 
             

@@ -25,4 +25,11 @@ struct Recipe: Codable{
     /*denotes specific Recipe name and quantity of the ingredients,
     adds this to a Recipe if it doesnt exist , or increment the
     count if it is */
+    
+    
+    var owner: String
+    /*
+     denotes the user that owns this recipe 
+     */
+
 }

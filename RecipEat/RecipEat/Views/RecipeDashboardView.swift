@@ -30,6 +30,39 @@ struct RecipeDashboardView: View {
                     } label: {
                         Text(i)
                     }
+                    
+                    
+                    /*
+                     TODO: have a block that displays the name of the user's recipes along with information about the macros of that recipe
+                     
+                     TODO: need to make the block navigatable, taking them to a display page that shows the information of the recipe
+                     
+                     TODO: on the display page we need an edit button that will allow the user to edit the fields we put in as well as a delete button w/ a confirmaton
+                     
+                     TODO: also give ability to add pictures (later on)
+                     
+                     */
+
+                }
+                
+                
+                List(viewModel.recipesUwU, id: \.name) { item in
+                           VStack(alignment: .leading) {
+                               Text("Name: \(item.name)")
+                                   .font(.headline)
+                               Text("Protein: \(item.protein)g")
+                               Text("Carbs: \(item.carbs)g")
+                               Text("Fats: \(item.fats)g")
+                               Text("Calories: \(item.kcal) kcal")
+                           }
+                           .padding()
+                       }
+                       .navigationTitle("Nutrition Info")
+
+                
+                
+    
+
                 }
                 
                 
@@ -51,7 +84,7 @@ struct RecipeDashboardView: View {
             
         }
     }
-}
+
 
 #Preview {
     RecipeDashboardView(userId: "")
