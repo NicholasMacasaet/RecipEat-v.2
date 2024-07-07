@@ -39,7 +39,13 @@ struct RecipeDashboardView: View {
                      
                      TODO: on the display page we need an edit button that will allow the user to edit the fields we put in as well as a delete button w/ a confirmaton
                      
-                     TODO: also give ability to add pictures (later on)
+                     TODO: also give ability to add pictures PLOT TWIST NOW
+                     
+                     
+                     
+                     need:
+                        -New photo struct for each recipe
+                        -identifier that denotes owner of photo or which photo this recipe belongs to (use current userID and name of the recipe to denote ownership)
                      
                      */
 

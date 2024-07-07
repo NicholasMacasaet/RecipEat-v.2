@@ -16,6 +16,9 @@
 		012A00742BFE61080021B9A4 /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00732BFE61080021B9A4 /* ProfileViewModel.swift */; };
 		012A00762BFE6D320021B9A4 /* SearchBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00752BFE6D320021B9A4 /* SearchBar.swift */; };
 		012A00782BFE6D400021B9A4 /* SearchBarViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 012A00772BFE6D400021B9A4 /* SearchBarViewModel.swift */; };
+		014478742C3B0AA5004FCAAB /* PhotoSelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014478732C3B0AA5004FCAAB /* PhotoSelectionView.swift */; };
+		014478782C3B0F6D004FCAAB /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 014478772C3B0F6D004FCAAB /* Photo.swift */; };
+		0144787A2C3B21C5004FCAAB /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 014478792C3B21C5004FCAAB /* FirebaseStorage */; };
 		01D323402BF688E400A48B83 /* RecipEatApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D3233F2BF688E400A48B83 /* RecipEatApp.swift */; };
 		01D323422BF688E400A48B83 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01D323412BF688E400A48B83 /* LoginView.swift */; };
 		01D323442BF688E500A48B83 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 01D323432BF688E500A48B83 /* Assets.xcassets */; };
@@ -54,6 +57,8 @@
 		012A00732BFE61080021B9A4 /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		012A00752BFE6D320021B9A4 /* SearchBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBar.swift; sourceTree = "<group>"; };
 		012A00772BFE6D400021B9A4 /* SearchBarViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBarViewModel.swift; sourceTree = "<group>"; };
+		014478732C3B0AA5004FCAAB /* PhotoSelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoSelectionView.swift; sourceTree = "<group>"; };
+		014478772C3B0F6D004FCAAB /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
 		01D3233C2BF688E400A48B83 /* RecipEat.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RecipEat.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		01D3233F2BF688E400A48B83 /* RecipEatApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipEatApp.swift; sourceTree = "<group>"; };
 		01D323412BF688E400A48B83 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
@@ -86,6 +91,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				01D3234F2BF6899300A48B83 /* FirebaseAuth in Frameworks */,
+				0144787A2C3B21C5004FCAAB /* FirebaseStorage in Frameworks */,
 				01D323512BF6899300A48B83 /* FirebaseFirestore in Frameworks */,
 				01D323532BF6899300A48B83 /* FirebaseFirestoreSwift in Frameworks */,
 			);
@@ -120,6 +126,7 @@
 		01D3233E2BF688E400A48B83 /* RecipEat */ = {
 			isa = PBXGroup;
 			children = (
+				01D323432BF688E500A48B83 /* Assets.xcassets */,
 				012A00682BF69FDB0021B9A4 /* Custom Fonts */,
 				01D323592BF68D2600A48B83 /* Misc */,
 				01D323582BF68D1B00A48B83 /* Models */,
@@ -149,6 +156,7 @@
 				01D323622BF6927900A48B83 /* SettingsView.swift */,
 				01D3235C2BF68F7900A48B83 /* RecipeDashboardView.swift */,
 				01D323642BF6929D00A48B83 /* RecipeCreationView.swift */,
+				014478732C3B0AA5004FCAAB /* PhotoSelectionView.swift */,
 				01D323662BF6940300A48B83 /* RecipeDashboardItemView.swift */,
 				01D3235E2BF68F8B00A48B83 /* RecipeView.swift */,
 				01D323602BF68FCF00A48B83 /* InstructionView.swift */,
@@ -183,6 +191,7 @@
 				01D3236A2BF6942300A48B83 /* Recipe.swift */,
 				01D3236C2BF6943A00A48B83 /* Ingredient.swift */,
 				012A006D2BF91AAC0021B9A4 /* Extensions.swift */,
+				014478772C3B0F6D004FCAAB /* Photo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -192,7 +201,6 @@
 			children = (
 				01D323542BF68B3A00A48B83 /* GoogleService-Info.plist */,
 				01D3233F2BF688E400A48B83 /* RecipEatApp.swift */,
-				01D323432BF688E500A48B83 /* Assets.xcassets */,
 			);
 			path = Misc;
 			sourceTree = "<group>";
@@ -217,6 +225,7 @@
 				01D3234E2BF6899300A48B83 /* FirebaseAuth */,
 				01D323502BF6899300A48B83 /* FirebaseFirestore */,
 				01D323522BF6899300A48B83 /* FirebaseFirestoreSwift */,
+				014478792C3B21C5004FCAAB /* FirebaseStorage */,
 			);
 			productName = RecipEat;
 			productReference = 01D3233C2BF688E400A48B83 /* RecipEat.app */;
@@ -278,6 +287,7 @@
 			files = (
 				01D323632BF6927900A48B83 /* SettingsView.swift in Sources */,
 				012A00782BFE6D400021B9A4 /* SearchBarViewModel.swift in Sources */,
+				014478742C3B0AA5004FCAAB /* PhotoSelectionView.swift in Sources */,
 				012A00652BF698C30021B9A4 /* MainView.swift in Sources */,
 				01D3237B2BF695B000A48B83 /* RecipeViewModel.swift in Sources */,
 				012A00742BFE61080021B9A4 /* ProfileViewModel.swift in Sources */,
@@ -292,6 +302,7 @@
 				01D323752BF6956B00A48B83 /* RecipeDashboardViewModel.swift in Sources */,
 				01D323732BF6955100A48B83 /* SettingsViewModel.swift in Sources */,
 				01D323402BF688E400A48B83 /* RecipEatApp.swift in Sources */,
+				014478782C3B0F6D004FCAAB /* Photo.swift in Sources */,
 				012A00722BFE60D40021B9A4 /* ProfileView.swift in Sources */,
 				01D323672BF6940300A48B83 /* RecipeDashboardItemView.swift in Sources */,
 				012A006C2BF6B3800021B9A4 /* REButton.swift in Sources */,
@@ -523,6 +534,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		014478792C3B21C5004FCAAB /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 01D3234D2BF6899300A48B83 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
 		01D3234E2BF6899300A48B83 /* FirebaseAuth */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 01D3234D2BF6899300A48B83 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

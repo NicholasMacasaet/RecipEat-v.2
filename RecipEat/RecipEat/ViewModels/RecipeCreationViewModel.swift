@@ -8,17 +8,19 @@
 import Foundation
 import FirebaseAuth
 import Firebase
+import FirebaseStorage
+
 
 class RecipeCreationViewModel: ObservableObject{
     
     /*
      Primitives for the ingredients
      */
-//    @Published var ingredientName = ""
-//    @Published var ingredientProtein = 0.0
-//    @Published var ingredientFats = 0.0
-//    @Published var ingredientCarbs = 0.0
-//    @Published var ingredientkcal = 0
+    //    @Published var ingredientName = ""
+    //    @Published var ingredientProtein = 0.0
+    //    @Published var ingredientFats = 0.0
+    //    @Published var ingredientCarbs = 0.0
+    //    @Published var ingredientkcal = 0
     
     @Published var ingredientName: String
     @Published var ingredientProtein: Double
@@ -28,18 +30,6 @@ class RecipeCreationViewModel: ObservableObject{
     
     
     @Published var quantity = 1
-    
-//    @State var ingredientName = ""
-//    @State var ingredientProtein = 0.0
-//    @State var ingredientFats = 0.0
-//    @State var ingredientCarbs = 0.0
-//    @State var ingredientkcal = 0
-//
-    
-//    print("Saved ingredient Name: \(ingredientName)")
-//    print("Saved ingredient Protein: \(ingredientProtein)")
-//    print("Saved ingredient Fats: \(ingredientFats)")
-//    print("Saved ingredient Carbs: \(ingredientCarbs)")
     
     @Published var recipeName = ""
     
@@ -88,11 +78,17 @@ class RecipeCreationViewModel: ObservableObject{
         
         
         do {
-            try db.collection("recipes").addDocument(from: newRecipe)
+            let documentReference = try db.collection("recipes").addDocument(from: newRecipe)
+            let recipeID = documentReference.documentID
+            
+            print("document added, adding photo now")
+            
+            
+            
         } catch let error {
             print("Error writing recipe to Firestore: \(error)")
         }
-
+        
         
     }
     
@@ -106,7 +102,7 @@ class RecipeCreationViewModel: ObservableObject{
     
     
     /*
-    meant to be used on button press from the search bar component
+     meant to be used on button press from the search bar component
      */
     func addIngredients () -> Bool {
         
@@ -117,12 +113,12 @@ class RecipeCreationViewModel: ObservableObject{
         print("test")
         
         
-                print("Saved ingredient Name: \(ingredientName)")
-                print("Saved ingredient Protein: \(ingredientProtein)")
-                print("Saved ingredient Fats: \(ingredientFats)")
-                print("Saved ingredient Carbs: \(ingredientCarbs)")
+        print("Saved ingredient Name: \(ingredientName)")
+        print("Saved ingredient Protein: \(ingredientProtein)")
+        print("Saved ingredient Fats: \(ingredientFats)")
+        print("Saved ingredient Carbs: \(ingredientCarbs)")
         
-    
+        
         guard !ingredientName.isEmpty else{
             return false
         }
@@ -162,7 +158,7 @@ class RecipeCreationViewModel: ObservableObject{
         kcal = 0
         
         
-        return true 
+        return true
     }
     
     
@@ -192,4 +188,66 @@ class RecipeCreationViewModel: ObservableObject{
         return true
     }
     
+    
+    func saveImage(recipeID: String, photo: Photo, image: UIImage) async -> Bool{
+        /*
+         Calling this after we save the recipe
+         
+         */
+        guard recipeID != "" else{
+            print("recipe id is empty ")
+            return false
+        }
+        
+        let photoName = UUID().uuidString
+        let storage = Storage.storage() //firebase instance
+        let storageRef = storage.reference().child("\(recipeID)/\(photoName).jpeg")
+        
+        
+        guard let resizedImage = image.jpegData(compressionQuality: 0.2) else {
+            return false
+        }
+        //setting up compression
+        
+        let metadata = StorageMetadata()
+        metadata.contentType = "image/jpg"
+        //setting up metadata
+        
+        var imageUrlString = ""
+        
+        do{
+            let _ = try await storageRef.putDataAsync(resizedImage, metadata: metadata)
+            print("Image saved")
+            //image saving
+            
+            do{
+                let imageUrl =  try await storageRef.downloadURL()
+                imageUrlString = "\(imageUrl)" //for saving the url in cloud firestore sa a part of the document in the photos collection
+            }catch{
+                print("could not get image url after saving image ")
+                return false
+                
+            }
+        }catch{
+            print("error uploading to storage ")
+            return false
+        }
+        
+        //now that we have the url of the photo from storage, we save the photo in the document
+        
+        let collectionString = "recipes/\(recipeID)/photos"
+        
+        do{
+            var newPhoto = photo
+            
+            newPhoto.imageURLString = imageUrlString
+            try await db.collection(collectionString).document(photoName).setData(newPhoto.dictionary)
+            print("Data updated weewoo :D")
+        }catch{
+            print("Wha tthe fuck went wrong IN SAVING IMAGE AAAAAAAAA")
+            return false 
+        }
+        
+        return true
+    }
 }
