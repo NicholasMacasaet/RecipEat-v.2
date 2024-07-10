@@ -9,35 +9,43 @@ import SwiftUI
 
 struct PhotoSelectionView: View {
 //    
-//    @State private var photo = Photo()
+   @State private var photo = Photo()
     var uiImage: UIImage
+    //pass in recipe from parent view/recipecreationview
+    @Environment(\.dismiss) private var dismiss
     
+//    @ObservedObject var viewModel
+//    
     var body: some View {
-    
-        
         NavigationStack{
-            Text("Add photo to recipe:")
+            Text("Would you like to add this image to \(photo.recipe)?")
                 .font(.largeTitle)
-                .fontWeight(.bold)
-            
+                .fontWeight(.medium)
             
             
             VStack{
                 Spacer()
                 
-                
                 Image(uiImage: uiImage)
                     .resizable()
                     .scaledToFit()
-                
-                
+                    .padding(.horizontal)
                 Spacer()
             }
-            
-            
+        }.toolbar{
+            ToolbarItem(placement:.cancellationAction){
+                Button("Cancel") {
+                    dismiss()
+                }
+            }
+            ToolbarItem(placement: .automatic){
+                Button("Save"){
+                    Task{
+                        
+                    }
+                }
+            }
         }
-        
-        
     }
 }
 

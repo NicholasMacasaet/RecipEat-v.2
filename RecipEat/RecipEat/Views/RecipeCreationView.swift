@@ -19,6 +19,10 @@ struct RecipeCreationView: View {
     @State private var ingredientCarbs = 0.0
     @State private var kcal = 0
     @State private var selectedPhoto: PhotosPickerItem?
+
+    
+    @State private var uiImageSelected = UIImage()
+    
     
     @ObservedObject var viewModel: RecipeCreationViewModel
     
@@ -99,22 +103,6 @@ struct RecipeCreationView: View {
             
             
             
-            /*
-             TODO: (4)
-             Here we would render all the ingredients that are in the recipe via iterating over the internal dictionary. Since the key of the dict is the name of the ingredient and the value is the quantity it should be simple enough
-             */
-            
-            
-            
-            
-            
-            /*
-             TODO: (5)
-             Here we'll put two text fields, one for the name and one for the description so the user can add the instructions for the recipe and the name
-             
-             */
-            
-            
             Group{
                 
                 HStack{
@@ -137,7 +125,9 @@ struct RecipeCreationView: View {
                                 do{
                                     if let data = try await newPhoto?.loadTransferable(type: Data.self){
                                         if let uIMage = UIImage(data: data){
-                                            //WHERE THE UI Image stuff would go
+                                            //WHERE THE UI Image stuff would g
+                                            uiImageSelected = uIMage
+                                            
                                             print("Reee we have photo")
                                         }
                                     }
@@ -171,8 +161,10 @@ struct RecipeCreationView: View {
                 
                 
                 REButton(title:"Add Recipe", background: Color("Ube Purple")){
+                    Task{
+                        await viewModel.registerRecipe()
+                    }
                     
-                    viewModel.registerRecipe()
                 }
                 .frame(width: UIScreen.main.bounds.width/2, height: UIScreen.main.bounds.width/4)
                 
@@ -195,7 +187,9 @@ struct RecipeCreationView: View {
                 viewModel.ingredientCarbs = ingredientCarbs}
             .onChange(of: kcal) {
                 viewModel.kcal = kcal}
-            
+            .onChange(of:uiImageSelected){
+                viewModel.currImage = uiImageSelected
+            }
         }
     }
 

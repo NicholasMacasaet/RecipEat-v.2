@@ -27,18 +27,16 @@ class RecipeCreationViewModel: ObservableObject{
     @Published var ingredientFats: Double
     @Published var ingredientCarbs: Double
     @Published var kcal: Int
-    
-    
     @Published var quantity = 1
+    // stuff for macros
+    
+    @Published var currImage = UIImage()
+    //currently selected photo
     
     @Published var recipeName = ""
-    
     @Published var recipeDirections = ""
-    
-    
     @Published var newRecipe: Recipe
-    
-    
+
     @Published private var curr_user: String
     
     
@@ -46,7 +44,7 @@ class RecipeCreationViewModel: ObservableObject{
     
     let db = Firestore.firestore()
     
-    init(ingredientName: String,ingredientProtein: Double, ingredientFats: Double, ingredientCarbs: Double, kcal: Int ){
+    init(ingredientName: String,ingredientProtein: Double, ingredientFats: Double, ingredientCarbs: Double, kcal: Int){
         self.newRecipe = Recipe(name: "", protein: 0.0 , fats: 0.0 , carbs: 0.0 , kcal: 0, directions: "", ingredients: [:], owner:"")
         
         self.ingredientName = ingredientName
@@ -54,6 +52,7 @@ class RecipeCreationViewModel: ObservableObject{
         self.ingredientFats = ingredientFats
         self.ingredientCarbs = ingredientCarbs
         self.kcal = kcal
+        
         
         
         
@@ -66,7 +65,7 @@ class RecipeCreationViewModel: ObservableObject{
     }
     
     
-    func registerRecipe (){
+    func registerRecipe () async{
         guard addRecipeName() && addRecipeDirections() else{
             return
         }
@@ -80,6 +79,27 @@ class RecipeCreationViewModel: ObservableObject{
         do {
             let documentReference = try db.collection("recipes").addDocument(from: newRecipe)
             let recipeID = documentReference.documentID
+            var newPhoto = Photo()
+            newPhoto.owner = curr_user
+            newPhoto.recipe = recipeName
+            if await saveImage(recipeID: recipeID, photo: newPhoto, image: currImage){
+                print("Image saving succesful")
+            }
+            else{
+                print("Image saving failed in registerRecipe()")
+            }
+            
+            
+//            do{
+//                let _ = try await saveImage(recipeID: recipeID, photo: newPhoto, image: currImage)
+//            }catch{
+//                print("Error in saving image during recipe saving function ")
+//            }
+            
+            
+            
+            //here we call the saveImage function, passing in the recipeID, our photo struct, and our UIimage we get from the view
+            //
             
             print("document added, adding photo now")
             
@@ -245,7 +265,7 @@ class RecipeCreationViewModel: ObservableObject{
             print("Data updated weewoo :D")
         }catch{
             print("Wha tthe fuck went wrong IN SAVING IMAGE AAAAAAAAA")
-            return false 
+            return false
         }
         
         return true
