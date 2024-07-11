@@ -25,11 +25,68 @@ struct RecipeDashboardView: View {
 //        
         NavigationView{
             VStack{
-                ForEach(self.viewModel.recipes, id: \.self){
-                    i in Button {
-                    } label: {
-                        Text(i)
+                List(viewModel.recipesUwU, id: \.name) { item in
+                    
+                    HStack{
+                        VStack(alignment: .leading) {
+                            Text("Name: \(item.name)")
+                                .font(.headline)
+                            Text("Protein: \(String(format: "%.2f", item.protein)) g")
+                            Text("Carbs: \(String(format: "%.2f", item.carbs)) g")
+                            Text("Fats: \(String(format: "%.2f", item.fats)) g")
+                            Text("Calories: \(item.kcal) kcal")
+                            
+                            
+ 
+                        }
+                        .padding()
+                        
+                        if(viewModel.recipePhotos.keys.contains(item.name)){
+                            //if the photo exists in the dictiomary for this then render it
+                            let url = URL(string:viewModel.recipePhotos[item.name]!)
+                            AsyncImage(url: url) { loadedImage in
+                                loadedImage
+                                    .resizable()
+                                    .scaledToFit()
+                            } placeholder: {
+                                ProgressView()
+                            }
+
+                            
+                            
+                            
+                            
+                           //Text("test")
+                            
+                            
+                            
+                        }
                     }
+                    
+                           
+                       }
+//                       .navigationTitle("Nutrition Info")
+                    .navigationTitle("My Recipes")
+                    .toolbar{
+                        //action
+                            NavigationLink{
+                                RecipeCreationView()
+                                //print("going to recipe creation view")
+                                
+                            } label: {
+                                Image(systemName:"plus")
+                            }.foregroundColor(Color("Ube Purple"))
+                        
+                        
+                    }
+                }
+            
+//                ForEach(self.viewModel.recipes, id: \.self){
+//                    i in Button {
+//                    } label: {
+//                        Text(i)
+//               
+//                    }
                     
                     
                     /*
@@ -42,52 +99,17 @@ struct RecipeDashboardView: View {
                      TODO: also give ability to add pictures PLOT TWIST NOW
                      
                      
-                     
                      need:
                         -New photo struct for each recipe
                         -identifier that denotes owner of photo or which photo this recipe belongs to (use current userID and name of the recipe to denote ownership)
                      
                      */
 
-                }
+//                }
                 
-                
-                List(viewModel.recipesUwU, id: \.name) { item in
-                           VStack(alignment: .leading) {
-                               Text("Name: \(item.name)")
-                                   .font(.headline)
-                               Text("Protein: \(item.protein)g")
-                               Text("Carbs: \(item.carbs)g")
-                               Text("Fats: \(item.fats)g")
-                               Text("Calories: \(item.kcal) kcal")
-                           }
-                           .padding()
-                       }
-                       .navigationTitle("Nutrition Info")
-
-                
-                
-    
-
-                }
-                
-                
-            }
-            .navigationTitle("My Recipes")
-            .toolbar{
-                //action
-               
-                    NavigationLink{
-                        RecipeCreationView()
-                        //print("going to recipe creation view")
-                        
-                    } label: {
-                        Image(systemName:"plus")
-                    }.foregroundColor(Color("Ube Purple"))
-                
-                
-            }
             
+                
+            }
         }
     }
 
